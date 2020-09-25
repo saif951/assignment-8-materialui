@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import NavBar from "./component/NavBar/NavBar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Main from "./component/Main/Main";
+import PostDetails from "./component/PostDetails/PostDetails";
+import NotFound from "./component/NotFound/NotFound";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="social-buddy">
+      <Router>
+        <NavBar></NavBar>
+        <Switch>
+          <Route exact path="/">
+            <Main />
+          </Route>
+          <Route exact path="/path">
+            <Main />
+          </Route>
+          <Route path="/post/:postId">
+            <PostDetails />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
